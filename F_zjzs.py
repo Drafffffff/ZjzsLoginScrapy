@@ -23,7 +23,7 @@ class F_zjzs:
     }
     cookie = ""
     VerifyCode = ""
-    appid = "sjs81a01h81ar8ss8ay5y4c9yi09i99yi949"
+    appid = ""
 
     def get_Verifycode(self):
         request = requests.get(
@@ -70,21 +70,22 @@ class F_zjzs:
 
     def login(self):
         # http://pgzy.zjzs.net:8011/ashx/loginHandler.ashx
-        self.format_cookie(ASP=True, appid=True)
+        self.format_cookie(ASP=True, appid=False)
         self.header['Cookie'] = self.cookie
-        print self.cookie
+        # print self.cookie
         self.Tidy_Data()
         self.result = requests.post(
             'http://pgzy.zjzs.net:8011/ashx/loginHandler.ashx',
             headers=self.header, data=self.data
         )
         self.userflag = 1
+        self.appid = self.result.cookies['appid']
         print 'login!'
 
     def default(self):
         self.format_cookie(ASP=True, usersfz=True, appid=True)
         self.header['Cookie'] = self.cookie
-        print self.cookie
+        # print self.cookie
         self.resultpage = requests.get(
             'http://pgzy.zjzs.net:8011/default.aspx', headers=self.header)
 
