@@ -1,0 +1,15 @@
+lishi 
+body > div > table:nth-child(1) > tbody > tr:nth-child(4) > td:nth-child(6)
+
+dili
+body > div > table:nth-child(1) > tbody > tr:nth-child(4) > td:nth-child(7)
+
+huaxue
+body > div > table:nth-child(1) > tbody > tr:nth-child(4) > td:nth-child(9)
+
+
+
+
+#Div11
+
+<div id="Div11" name="xklscj.aspx" href="" class="menu-item" style="height: 20px;"><div class="menu-text">学业考试历次成绩查询</div></div>

@@ -23,7 +23,7 @@ class F_zjzs:
     }
     cookie = ""
     VerifyCode = ""
-    appid = ""
+    appid = " "
 
     def get_Verifycode(self):
         request = requests.get(
@@ -70,7 +70,7 @@ class F_zjzs:
 
     def login(self):
         # http://pgzy.zjzs.net:8011/ashx/loginHandler.ashx
-        self.format_cookie(ASP=True, appid=False)
+        self.format_cookie(ASP=True)
         self.header['Cookie'] = self.cookie
         # print self.cookie
         self.Tidy_Data()
@@ -79,8 +79,14 @@ class F_zjzs:
             headers=self.header, data=self.data
         )
         self.userflag = 1
+        # print self.result.cookies
         self.appid = self.result.cookies['appid']
+        # print self.appid
         print 'login!'
+
+    def Req(self, url):
+        return requests.get(
+            url, headers=self.header)
 
     def default(self):
         self.format_cookie(ASP=True, usersfz=True, appid=True)
@@ -95,5 +101,24 @@ class F_zjzs:
         self.header['Cookie'] = self.cookie
         requests.get(
             'http://pgzy.zjzs.net:8011/logout.aspx', headers=self.header)
-        self.userflag = 0
+        self.clean()
         print "logoutted!"
+
+    def clean(self):
+        self.userflag = 0
+        self.IdentityID = ""
+        self.PassWorld = ""
+        self.header = {
+            'Accept': 'image/webp,image/*,*/*;q=0.8',
+            'Accept-Encoding': 'gzip, deflate, sdch',
+            'Accept-Language': 'zh-CN,zh;q=0.8',
+            'Connection': 'keep-alive',
+            'Cookie': '',
+            'Host': 'pgzy.zjzs.net:8011',
+            'Referer': 'http://pgzy.zjzs.net:8011/login.htm',
+            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 \
+    (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36'
+        }
+        self.cookie = ""
+        self.VerifyCode = ""
+        self.appid = " "
