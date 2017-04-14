@@ -8,7 +8,7 @@ from Excelio import get_identid, get_passwd, wr_in, get_name
 
 if __name__ == "__main__":
     user = F_zjzs()
-    for i in xrange(2, 5):
+    for i in xrange(2, 29):
         id = get_identid(i)
         pw = get_passwd(i)
         print get_name(i)
@@ -27,11 +27,14 @@ if __name__ == "__main__":
         # print tmp
         soupp = BeautifulSoup(tmp, 'lxml')
         lishi = soupp.select(
-            'body > div > table:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(6)')[0].string
+            'body > div > table:nth-of-type(1) > tr:nth-of-type(4) >\
+             td:nth-of-type(6)')[0].string
         dili = soupp.select(
-            'body > div > table:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(7)')[0].string
+            'body > div > table:nth-of-type(1) > tr:nth-of-type(4) >\
+             td:nth-of-type(7)')[0].string
         huaxue = soupp.select(
-            'body > div > table:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(9)')[0].string
+            'body > div > table:nth-of-type(1) > tr:nth-of-type(4) >\
+             td:nth-of-type(9)')[0].string
         print lishi, dili, huaxue
         wr_in('D', i, lishi)
         wr_in('E', i, dili)
