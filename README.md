@@ -14,7 +14,7 @@
 
 
 
-## 3. 需要的依赖有 python2.7 requests tesseract3.04 openpyxl
+## 3. 需要的依赖有 python2.7 requests tesseract3.04 openpyxl pIL
 
 
 ## 4. 菜逼写的小脚本，希望有大神能指出更好的写法～
