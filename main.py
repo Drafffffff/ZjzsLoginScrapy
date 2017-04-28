@@ -1,42 +1,59 @@
-# -*- coding: utf-8 -*-
-
+# coding=utf-8
 
 from bs4 import BeautifulSoup
 from F_zjzs import F_zjzs
 from Excelio import get_identid, get_passwd, wr_in, get_name
 
 
+order = {'SXXK': 'D',
+         'YWXK': 'E',
+         'YYXK': 'F',
+         'SZXK': 'G',
+         'LSXK': 'H',
+         'DLXK': 'I',
+         'WLXK': 'J',
+         'HXXK': 'K',
+         'SWXK': 'L',
+         'JSXK': 'M',
+         'SZXN': 'N',
+         'LSXN': 'O',
+         'DLXN': 'P',
+         'WLXN': 'Q',
+         'HXXN': 'R',
+         'SWXN': 'S',
+         'JSXN': 'T',
+         }
+
+
 if __name__ == "__main__":
     user = F_zjzs()
-    for i in xrange(2, 29):
+    for i in xrange(2, 14):
+        print '________',i,'_________'
         id = get_identid(i)
         pw = get_passwd(i)
         print get_name(i)
         # print id, '____', pw
         user.IdentityID = id
         user.PassWorld = pw
-        user.get_Verifycode()
+        try:
+            user.get_Verifycode()
+        except KeyError:
+            user.get_Verifycode()
+        else:
+            pass
+
         user.Tidy_Data()
-        user.login()
-        user.default()
-        # print user.resultpage.text
-        soup = BeautifulSoup(user.resultpage.text, "lxml")
-        tag = soup.select('#Div11')[0]
-        url = 'http://pgzy.zjzs.net:8011/' + tag["name"]
-        tmp = user.Req(url).text
-        # print tmp
-        soupp = BeautifulSoup(tmp, 'lxml')
-        lishi = soupp.select(
-            'body > div > table:nth-of-type(1) > tr:nth-of-type(4) >\
-             td:nth-of-type(6)')[0].string
-        dili = soupp.select(
-            'body > div > table:nth-of-type(1) > tr:nth-of-type(4) >\
-             td:nth-of-type(7)')[0].string
-        huaxue = soupp.select(
-            'body > div > table:nth-of-type(1) > tr:nth-of-type(4) >\
-             td:nth-of-type(9)')[0].string
-        print lishi, dili, huaxue
-        wr_in('D', i, lishi)
-        wr_in('E', i, dili)
-        wr_in('F', i, huaxue)
-        user.logout()
+        try:
+            user.login()
+        except KeyError:
+            user.login()
+        else:
+            pass
+        soup = BeautifulSoup(user.result.text, "lxml")
+        tmpppp = soup.select(
+            '#form1 > div:nth-of-type(4) > div:nth-of-type(2) > \
+            div > div > span')
+        # print tmpppp
+        for A in tmpppp:
+            wr_in(order[A['id']], i, str(A.string))
+        user.clean()
