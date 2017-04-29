@@ -22,13 +22,14 @@ order = {'SXXK': 'D',
          'HXXN': 'R',
          'SWXN': 'S',
          'JSXN': 'T',
+         'WYXN': 'U'
          }
 
 
 if __name__ == "__main__":
     user = F_zjzs()
-    for i in xrange(2, 14):
-        print '________',i,'_________'
+    for i in xrange(3, 20):
+        print '________', i, '_________'
         id = get_identid(i)
         pw = get_passwd(i)
         print get_name(i)
@@ -55,5 +56,6 @@ if __name__ == "__main__":
             div > div > span')
         # print tmpppp
         for A in tmpppp:
+            print A
             wr_in(order[A['id']], i, str(A.string))
         user.clean()
