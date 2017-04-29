@@ -14,7 +14,7 @@
 
 
 
-## 3. 需要的依赖有 python2.7 requests tesseract3.04 openpyxl pIL
+## 3. 需要的依赖有 python2.7 requests tesseract3.04 openpyxl pIL lxml
 
 
 ## 4. 菜逼写的小脚本，希望有大神能指出更好的写法～
@@ -24,5 +24,5 @@ Mail:i0.0ia@qq.com
 
 
 ## 5. TODO
-> 1. 完成从Excel读取储存用户数据的部分
-> 2. 完成对查分网站的网页分析（需等到学考查分开放）
+> 1. 完成从Excel读取储存用户数据的部分 √
+> 2. 完成对查分网站的网页分析（需等到学考查分开放）√
